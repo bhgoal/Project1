@@ -1,0 +1,54 @@
+.signIcon {
+    width: 70px;
+}
+
+#iconsContainer {
+    position: relative;
+}
+
+#ariesIcon {
+    position: absolute;
+}
+
+#ariesIcon {
+    position: absolute;
+}
+
+#ariesIcon {
+    position: absolute;
+}
+
+
+#ariesIcon {
+    position: absolute;
+}
+
+
+#ariesIcon {
+    position: absolute;
+}
+
+
+#ariesIcon {
+    position: absolute;
+}
+
+
+#ariesIcon {
+    position: absolute;
+}
+
+
+ul {
+    position: relative;
+    top: 50vh; left: 50vw; /*for example purposes only*/
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    position: absolute;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    transition: all 1s ease;
+}
