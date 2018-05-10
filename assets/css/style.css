@@ -1,54 +1,52 @@
 .signIcon {
+    border-radius: 50%;
     width: 70px;
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
 }
 
-#iconsContainer {
-    position: relative;
+.signIcon:hover:not(#sunIcon) {
+    box-shadow: 0 0 20px 2px white;
+    transform: translateY(-12px);
 }
 
-#ariesIcon {
+
+
+#welcomeScreen {
+    background: url("../images/starsBG.jpg");
+    background-size: cover;
+    background-position: center bottom;
+    height: 100vh;
+    width: 100vw;
+}
+
+#welcomeHeading {
+    color: white;
     position: absolute;
+    left: 50vw;
+    transform: translate(-50%, 0);
 }
 
-#ariesIcon {
+#iconCredit {
+    color: white;
     position: absolute;
-}
-
-#ariesIcon {
-    position: absolute;
-}
-
-
-#ariesIcon {
-    position: absolute;
-}
-
-
-#ariesIcon {
-    position: absolute;
-}
-
-
-#ariesIcon {
-    position: absolute;
-}
-
-
-#ariesIcon {
-    position: absolute;
+    bottom: 10px;
+    left: 20px;
 }
 
 
 ul {
-    position: relative;
-    top: 50vh; left: 50vw; /*for example purposes only*/
+    position: absolute;
+    top: 50vh; left: 50vw;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    transform: translate(-35px, -35px);
 }
 li {
     position: absolute;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    transition: all 1s ease;
+    -webkit-transition: all 1s cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 1s cubic-bezier(0.25,1,0.2,1);
+    transition: all 1s cubic-bezier(0.25,1,0.2,1);
 }
