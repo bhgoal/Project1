@@ -1,0 +1,59 @@
+html, body {
+    max-width: 100%;
+    overflow: hidden;
+    height: 100vh;
+}
+
+body {
+    background: url(../images/279857.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
+}
+
+.signIcon {
+    width: 70px;
+}
+
+#iconsContainer {
+    position: relative;
+    width: 100%;
+}
+
+ul {
+    position: relative;
+    width: 100%;
+    top: 50vh; left: 50vw;
+    /*for example purposes only */
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    transform: translate(-35px, -35px);
+}
+li {
+    position: absolute;
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+a {
+    position: relative
+  }
+  
+  a span {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 27px;
+    background: rgba(255,255,255,.3);
+    border-radius: 5px;
+    color: #000;
+    text-align: center;
+  }
+  
+  a:hover span {
+    display: block
+  }
