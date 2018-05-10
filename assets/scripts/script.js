@@ -24,28 +24,13 @@ $(document).ready(introLoad)
 
 function introLoad() {
     spinny();
+    
     $(".signIcon").on("click", function() {
 
         console.log("icon clicked");
         $("#welcomeHeading").css("opacity", "0");
-        $('li').css({
-            'transform': 'translate(-44vw, -38vh)',
-            WebkitTransition : 'all 1s ease-in-out',
-            MozTransition    : 'all 1s ease-in-out',
-            MsTransition     : 'all 1s ease-in-out',
-            OTransition      : 'all 1s ease-in-out',
-            transition       : 'all 1s ease-in-out'
-        });
-        $('li:not(#sunIcon)').css({
-            'opacity': '0'
-        });
-        //setTimeout(function() {$('li:not(#sunIcon)').css({
-        //    'display': 'none'
-        //})}, 1000);
-        
-        isMenuOpen = false;
+        menuClose();
         mainPage();
-        
     });
 }
 
@@ -65,6 +50,7 @@ function spinny() {
             rotateReverse = rotate * -1;
         $self.css({
             'transform': 'rotate(' + rotate + 'deg) translateY(-' + radius + ') rotate(' + rotateReverse + 'deg)',
+            'opacity': '1',
             WebkitTransition : 'all 1s cubic-bezier(0.25,1,0.2,1)',
             MozTransition    : 'all 1s cubic-bezier(0.25,1,0.2,1)',
             MsTransition     : 'all 1s cubic-bezier(0.25,1,0.2,1)',
@@ -78,23 +64,40 @@ function spinny() {
 
 function mainPage() {
     console.log("begin mainPage");
-    $("#sunIcon").on("click", menuOpen);
 }
+
+$("#sunIcon").on("click", function(){
+    if (isMenuOpen === false) {
+        menuOpen();
+    }
+});
+
 
 function menuOpen() {
     console.log("begin menuOpen");
     $('li').css({
         'transform': 'translate(calc(50% - 35px), calc(50% - 35px)',
+        WebkitTransition : 'all 500ms ease-in-out',
+        MozTransition    : 'all 500ms ease-in-out',
+        MsTransition     : 'all 500ms ease-in-out',
+        OTransition      : 'all 500ms ease-in-out',
+        transition       : 'all 500ms ease-in-out'
+    });
+    setTimeout(spinny, 500);
+    isMenuOpen = true;
+}
+
+function menuClose() {
+    $('li').css({
+        'transform': 'translate(-44vw, -38vh)',
         WebkitTransition : 'all 1s ease-in-out',
         MozTransition    : 'all 1s ease-in-out',
         MsTransition     : 'all 1s ease-in-out',
         OTransition      : 'all 1s ease-in-out',
         transition       : 'all 1s ease-in-out'
     });
-    $('li').css({
-        'opacity': '1'
+    $('li:not(#sunIcon)').css({
+        'opacity': '0'
     });
-    
-    setTimeout(spinny, 1000);
-    
+    isMenuOpen = false;
 }

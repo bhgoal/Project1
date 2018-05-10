@@ -1,15 +1,17 @@
 li a img {
     border-radius: 50%;
     width: 70px;
-    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
-    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
-    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    height: 70px;
+
 }
 
 
 li:not(:last-of-type) a img:hover {
     box-shadow: 0 0 20px 2px white;
     transform: translateY(-12px);
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
 }
 
 #welcomeScreen {
@@ -48,7 +50,5 @@ ul {
 }
 li {
     position: absolute;
-    -webkit-transition: all 1s cubic-bezier(0.25,1,0.2,1);
-    -moz-transition: all 1s cubic-bezier(0.25,1,0.2,1);
-    transition: all 1s cubic-bezier(0.25,1,0.2,1);
+
 }
