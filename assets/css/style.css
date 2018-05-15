@@ -1,14 +1,28 @@
+body {
+    font-family: 'Rajdhani', sans-serif;
+}
+
 li a img {
     border-radius: 50%;
     width: 70px;
     height: 70px;
-
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
 }
 
 
 li:not(:last-of-type) a img:hover {
     box-shadow: 0 0 20px 2px white;
     transform: translateY(-12px);
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+}
+
+#sunImg:hover {
+    box-shadow: 0 0 20px 5px orange;
+    transform: scale(1.1, 1.1);
     -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
     -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
     transition: all 500ms cubic-bezier(0.25,1,0.2,1);
@@ -47,8 +61,64 @@ ul {
     margin: 0;
     padding: 0;
     transform: translate(-35px, -35px);
+    z-index: 2;
 }
 li {
     position: absolute;
 
+}
+
+#helperModal {
+    background-color: rgba(250, 250, 250, 0.85);
+    box-shadow: 0 0 20px 2px white;
+    border-radius: 20px;
+    outline: none;
+    width: 40vw;
+}
+
+.helperIcon {
+    width: 22px;
+}
+
+
+
+#horoBox {
+    background-color: rgba(250, 250, 250, 0.85);
+    box-shadow: 0 0 20px 2px white;
+    border-radius: 20px;
+    outline: none;
+    width: 40vw;
+    height: 70%;
+    overflow: auto;
+    position: fixed;
+    margin-left: 30vw;
+    display: initial!important;
+    top: 15%;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
+    transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
+}
+
+#horoContent {
+    padding: 0 20px;
+}
+
+#apodContent {
+    padding: 0 20px;
+}
+
+#imageWrapper {
+    width: 30vw;
+    display: block;
+    margin: 60px auto 0;
+}
+
+#apod_img_id {
+    width: 30vw;
+}
+
+#copyright {
+    margin: 0;
 }
