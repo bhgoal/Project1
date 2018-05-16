@@ -2,7 +2,33 @@ body {
     font-family: 'Rajdhani', sans-serif;
 }
 
-#starBackground {
+li a img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+}
+
+
+li:not(:last-of-type) a img:hover {
+    box-shadow: 0 0 20px 2px white;
+    transform: translateY(-12px);
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+}
+
+#sunImg:hover {
+    box-shadow: 0 0 20px 5px orange;
+    transform: scale(1.1, 1.1);
+    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
+}
+
+#welcomeScreen {
     background: url("../images/starsBG.jpg");
     background-size: cover;
     background-position: center bottom;
@@ -20,45 +46,6 @@ body {
     transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
 }
 
-
-
-/* For positioning of menu icons */
-#signsList {
-    position: absolute;
-    top: 50vh; left: 50vw;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    transform: translate(-35px, -35px);
-    z-index: 2;
-}
-.signIcon, .menuIcon {
-    position: absolute;
-
-}
-
-
-
-/* For sizing of icons and hover functionality */
-.signImg, #sunImg {
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    -webkit-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
-    -moz-transition: all 500ms cubic-bezier(0.25,1,0.2,1);
-    transition: all 500ms cubic-bezier(0.25,1,0.2,1);
-}
-
-.signImg:hover {
-    box-shadow: 0 0 20px 2px white;
-    transform: translateY(-12px);
-}
-
-#sunImg:hover {
-    box-shadow: 0 0 20px 5px orange;
-    transform: scale(1.1, 1.1);
-}
-
 #iconCredit {
     color: white;
     position: absolute;
@@ -67,8 +54,20 @@ body {
 }
 
 
+ul {
+    position: absolute;
+    top: 50vh; left: 50vw;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    transform: translate(-35px, -35px);
+    z-index: 2;
+}
+li {
+    position: absolute;
 
-/* For sign finder modal */
+}
+
 #helperModal {
     background-color: rgba(250, 250, 250, 0.85);
     box-shadow: 0 0 20px 2px white;
@@ -83,7 +82,6 @@ body {
 
 
 
-/* For element that displays horoscope and APOD content */
 #horoBox {
     background-color: rgba(250, 250, 250, 0.85);
     box-shadow: 0 0 20px 2px white;

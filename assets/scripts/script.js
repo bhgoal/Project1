@@ -2,6 +2,7 @@ var isMenuOpen;
 var chosenSign;
 
 $(document).ready(function() {
+    // Initiate tooltip function
     $('.tooltipped').tooltip({
         exitDelay: 0,
         margin: 10
@@ -9,26 +10,31 @@ $(document).ready(function() {
     introLoad();
 });
 
+// On initial page load, run spin animation and create listener for icon clicks
 function introLoad() {
     spinny();
     isMenuOpen = true;
     $(".signIcon").on("click", function() {
-        $('.tooltip').tooltip('destroy');
+        // Store the sign that was clicked on
         chosenSign = $(this).attr("id");
         console.log("icon clicked");
+        // Fade away the welcome heading
         $("#welcomeHeading").css("opacity", "0");
+        // Run function for showing the sign's horoscope
         displayHoroscope(chosenSign);
+        // Run function for closing the menu
         menuClose();
     });
 }
 
+// Function for creating the icons' spin animation
 function spinny() {
     console.log("begin spinny");
     
     var type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
         radius = '12em', //distance from center
         start = 0, //shift start from 0
-        $elements = $('li:not(:last-child)'),
+        $elements = $(".signIcon"),
         numberOfElements = (type === 1) ?  $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle
         slice = 360 * type / numberOfElements;
 
@@ -48,9 +54,12 @@ function spinny() {
     });
 }
 
+
+// When menu is opened...
 function menuOpen() {
     console.log("begin menuOpen");
-    $('li').css({
+    // ..move icons back to center of page
+    $(".signIcon, .menuIcon").css({
         'transform': 'translate(calc(50% - 35px), calc(50% - 35px)',
         WebkitTransition : 'all 500ms ease-in-out',
         MozTransition    : 'all 500ms ease-in-out',
@@ -58,14 +67,19 @@ function menuOpen() {
         OTransition      : 'all 500ms ease-in-out',
         transition       : 'all 500ms ease-in-out'
     });
+    // Fade away previous horoscope box
     $("#horoBox").css("opacity", "0");
+    // Change sun tooltip from "open menu" to "sign finder"
     $("#sunImg").attr("data-tooltip", "Find your Sign");
+    // After icons have moved, run spin animation
     setTimeout(spinny, 500);
     isMenuOpen = true;
 }
 
+// When menu is closed...
 function menuClose() {
-    $('li', ).css({
+    // ..move icons to corner of page
+    $(".signIcon, .menuIcon").css({
         'transform': 'translate(-44vw, -38vh)',
         WebkitTransition : 'all 0.7s ease-in-out',
         MozTransition    : 'all 0.7s ease-in-out',
@@ -73,20 +87,26 @@ function menuClose() {
         OTransition      : 'all 0.7s ease-in-out',
         transition       : 'all 0.7s ease-in-out'
     });
-    $('li:not(#sun)').css("opacity", "0");
+    // Fade away sign icons, leave only sun icon
+    $(".signIcon").css("opacity", "0");
+    // Change sun tooltip from "sign finder" to "open menu"
     $("#sunImg").attr("data-tooltip", "Open Menu");
     isMenuOpen = false;
 }
 
+// When sun is clicked...
 $("#sun").on("click", function(){
     console.log("sun clicked");
+    // If menu is closed, sun functions as open menu button
     if (isMenuOpen === false) {
         menuOpen();
-    } else {
+    } // If menu is open, sun functions as sign help button
+    else {
         signHelper();
     }
 });
 
+// Function for opening sign helper modal
 function signHelper() {
     event.preventDefault();
     $('#helperModal').modal({
@@ -98,13 +118,17 @@ function signHelper() {
     var elem = $("#helperModal");
     var instance = M.Modal.getInstance(elem);
     instance.open();
-    
 }
+
+// Function for creating and displaying horoscope info
 function displayHoroscope(chosenSign) {
+    // Display loading text while waiting for slowass horoscope API
     $("#horoContent").text("Loading...");
+    // Fade in content box
     setTimeout(function(){$("#horoBox").css("opacity", "1")}, 700);
-    
     console.log(chosenSign);
+
+    // Horoscope API request code
     var userId = '602156';
     var apiKey = 'fb6d6d568269f3d420212694f375fd44';
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -116,60 +140,60 @@ function displayHoroscope(chosenSign) {
             "authorization": "Basic " + btoa(userId + ":" + apiKey),
             "Content-Type": 'application/json'
         },
-        // data: JSON.stringify(data)
     });
     return (request.then(function (resp) {
         console.log(resp);
-        var signObj = Object.values(resp.prediction);
+        // Keys are the headings for each horoscope section
         var keys = Object.keys(resp.prediction);
+        // signObj are the predictions for each key
+        var signObj = Object.values(resp.prediction);
         console.log(resp.prediction.health);
+        // Create div to hold content
         var newDiv = $("<div>");
+
+        // Create heading to show which sign was chosen
         var signHeading = $("<h1>");
         signHeading.text(chosenSign.charAt(0).toUpperCase() + chosenSign.substr(1));
         signHeading.css("text-align", "center");
         $(newDiv).append(signHeading);
+
+        // For every key in the response...
         for (var i = 0; i < keys.length; i++) {
             var newHeading = $("<h2>");
             var newP = $("<p>");   
 
-            // Grab the text from input box, trim beginning/ending whitespace
+            // Create var to store a single key
             var key = keys[i];
-
-            // Split input string into individual words
-            var searchSplit = key.split("_");
-
+            // Split key into individual words
+            var keySplit = key.split("_");
             // For each word in string..
-            for (var j = 0; j < searchSplit.length; j++)
+            for (var j = 0; j < keySplit.length; j++)
             {   // ..capitalize first character of word
-                searchSplit[j] = searchSplit[j].charAt(0).toUpperCase() + searchSplit[j].substr(1);
+                keySplit[j] = keySplit[j].charAt(0).toUpperCase() + keySplit[j].substr(1);
             }
             // Join words back into single string
-            key = searchSplit.join(" ");
+            key = keySplit.join(" ");
             console.log(key);
-            // Replace spaces in string with Unicode NBSP
-            //key = key.replace(/\s+/g, '\u00a0');
+
+            // Add key and predictions to content div
             newHeading.text(key);
             newP.text(signObj[i]);
             $(newDiv).append(newHeading);
             $(newDiv).append(newP);
         } 
         console.log(newDiv);
+        // Add content div to horo box
         $("#horoContent").html(newDiv);
+        // Run function for APOD
         getAPOD();
 
     }, function (err) {
         return err;
     }));
-    
-    
-
-    
 }
 
 function getAPOD() {
-    console.log("go apod");
     var url = "https://api.nasa.gov/planetary/apod?api_key=pC4qsyruPKlcXACxH2QIgyg9mbsDr1fVq4dKEUJp";
-
     $.ajax({
         url: url,
         method: "GET",
@@ -180,20 +204,24 @@ function getAPOD() {
             else {
                 $("#copyright").text("Image Credits: " + "Public Domain");
             }
-
+            // If APOD is a video, hide img div and show video
             if (result.media_type == "video") {
                 $("#apod_img_id").css("display", "none");
                 $("#apod_vid_id").attr("src", result.url);
             }
+            // If APOD is an image, hide video div and show img
             else {
                 $("#apod_vid_id").css("display", "none");
                 $("#apod_img_id").attr("src", result.url);
             }
+
+            // Hey Kevin we can delete these two right?
             $("#reqObject").text(url);
             $("#returnObject").text(JSON.stringify(result, null, 4));
+
+            // Add caption and title to APOD content boxes
             $("#apod_explanation").text(result.explanation);
             $("#apod_title").text(result.title);
         }
-
     });
 }
