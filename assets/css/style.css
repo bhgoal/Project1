@@ -124,3 +124,7 @@ body {
 #copyright {
     margin: 0;
 }
+
+.none {
+    display: none;
+}
