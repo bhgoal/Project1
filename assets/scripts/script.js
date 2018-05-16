@@ -171,7 +171,7 @@ function menuOpen() {
 function menuClose() {
     // ..move icons to corner of page
     $(".signIcon, .menuIcon").css({
-        'transform': 'translate(-47vw, -45vh)',
+        'transform': 'translate(-46vw, -44vh)',
         WebkitTransition: 'all 0.7s ease-in-out',
         MozTransition: 'all 0.7s ease-in-out',
         MsTransition: 'all 0.7s ease-in-out',
