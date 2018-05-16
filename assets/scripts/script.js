@@ -9,6 +9,45 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// Google Auth Provider Object
+var provider = new firebase.auth.GoogleAuthProvider();
+
+
+
+
+  $("#btnGoogleSignUp").on("click", function () {
+
+    var email = txtEmail.value;
+    var pass = txtPassword.value;
+    var auth = firebase.auth();
+
+    console.log("wut");
+    console.log(pass);
+
+
+    // auth.signInWithPopup(provider).then(function(result) {
+    //     // This gives you a Google Access Token. You can use it to access the Google API.
+    //     var token = result.credential.accessToken;
+    //     // The signed-in user info.
+    //     var user = result.user;
+    //     // ...
+    //   }).catch(function(error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     // The email of the user's account used.
+    //     var email = error.email;
+    //     // The firebase.auth.AuthCredential type that was used.
+    //     var credential = error.credential;
+    //     // ...
+    //   });
+
+    auth.signInWithRedirect(provider);
+
+
+});
+  
+
 //getting signin elemnts
 
 var txtEmail = document.getElementById('txtEmail');
