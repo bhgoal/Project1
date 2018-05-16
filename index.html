@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en-us" >
+<html lang="en-us">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -9,27 +10,99 @@
     <!-- Bootstrap and personal CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <title>Project 1</title>
 </head>
+
 <body>
     <div id="starBackground">
-        <h1 id="welcomeHeading">Welcome. Select your sign:</h1>
+        <nav>
+            <div class="nav-wrapper indigo darken-4">
+                <a href="#" class="brand-logo" id="welcomeHeading">Welcome. Select your sign:</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li id="create">
+                        <a>Create an Account</a>
+                    </li>
+                    <li id="signIn">
+                        <a>Sign In</a>
+                    </li>
+                    <li id="logOut">
+                        <a>Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- <h1 id="welcomeHeading">Welcome. Select your sign:</h1> -->
         <ul id="signsList">
-            <li id="aries" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Aries" src="assets/images/aries.png"></a></li>
-            <li id="taurus" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Taurus" src="assets/images/taurus.png"></a></li>
-            <li id="gemini" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Gemini" src="assets/images/gemini.png"></a></li>
-            <li id="cancer" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Cancer" src="assets/images/cancer.png"></a></li>
-            <li id="leo" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Leo" src="assets/images/leo.png"></a></li>
-            <li id="virgo" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Virgo" src="assets/images/virgo.png"></a></li>
-            <li id="libra" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Libra" src="assets/images/libra.png"></a></li>
-            <li id="scorpio" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Scorpio" src="assets/images/scorpio.png"></a></li>
-            <li id="sagittarius" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Sagittarius" src="assets/images/sagittarius.png"></a></li>
-            <li id="capricorn" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Capricorn" src="assets/images/capricorn.png"></a></li>
-            <li id="aquarius" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Aquarius" src="assets/images/aquarius.png"></a></li>
-            <li id="pisces" class="signIcon"><a href="#"><img class="signImg tooltipped" data-position="top" data-tooltip="Pisces" src="assets/images/pisces.png"></a></li>
-            <li id="sun" class="menuIcon"><a href="#"><img class="tooltipped" data-position="top" data-tooltip="Find your Sign" id="sunImg" src="assets/images/sun.png"></a></li>
+            <li id="aries" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Aries" src="assets/images/aries.png">
+                </a>
+            </li>
+            <li id="taurus" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Taurus" src="assets/images/taurus.png">
+                </a>
+            </li>
+            <li id="gemini" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Gemini" src="assets/images/gemini.png">
+                </a>
+            </li>
+            <li id="cancer" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Cancer" src="assets/images/cancer.png">
+                </a>
+            </li>
+            <li id="leo" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Leo" src="assets/images/leo.png">
+                </a>
+            </li>
+            <li id="virgo" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Virgo" src="assets/images/virgo.png">
+                </a>
+            </li>
+            <li id="libra" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Libra" src="assets/images/libra.png">
+                </a>
+            </li>
+            <li id="scorpio" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Scorpio" src="assets/images/scorpio.png">
+                </a>
+            </li>
+            <li id="sagittarius" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Sagittarius" src="assets/images/sagittarius.png">
+                </a>
+            </li>
+            <li id="capricorn" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Capricorn" src="assets/images/capricorn.png">
+                </a>
+            </li>
+            <li id="aquarius" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Aquarius" src="assets/images/aquarius.png">
+                </a>
+            </li>
+            <li id="pisces" class="signIcon">
+                <a href="#">
+                    <img class="signImg tooltipped" data-position="top" data-tooltip="Pisces" src="assets/images/pisces.png">
+                </a>
+            </li>
+            <li id="sun" class="menuIcon">
+                <a href="#">
+                    <img class="tooltipped" data-position="top" data-tooltip="Find your Sign" id="sunImg" src="assets/images/sun.png">
+                </a>
+            </li>
         </ul>
         <div id="helperModal" class="modal">
             <div class="modal-content">
@@ -45,69 +118,93 @@
                     <tbody>
                         <tr>
                             <td>Aries</td>
-                            <td><img class="helperIcon" src="assets/images/aries_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/aries_helper.svg">
+                            </td>
                             <td>(March 21-April 19)</td>
                         </tr>
                         <tr>
                             <td>Taurus</td>
-                            <td><img class="helperIcon" src="assets/images/taurus_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/taurus_helper.svg">
+                            </td>
                             <td>(April 20-May 20)</td>
                         </tr>
                         <tr>
                             <td>Gemini</td>
-                            <td><img class="helperIcon" src="assets/images/gemini_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/gemini_helper.svg">
+                            </td>
                             <td>(May 21-June 20)</td>
                         </tr>
                         <tr>
                             <td>Cancer</td>
-                            <td><img class="helperIcon" src="assets/images/cancer_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/cancer_helper.svg">
+                            </td>
                             <td>(June 21-July 22)</td>
                         </tr>
                         <tr>
                             <td>Leo</td>
-                            <td><img class="helperIcon" src="assets/images/leo_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/leo_helper.svg">
+                            </td>
                             <td>(July 23-August 22)</td>
                         </tr>
                         <tr>
                             <td>Virgo</td>
-                            <td><img class="helperIcon" src="assets/images/virgo_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/virgo_helper.svg">
+                            </td>
                             <td>(August 23-September 22)</td>
                         </tr>
                         <tr>
                             <td>Libra</td>
-                            <td><img class="helperIcon" src="assets/images/libra_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/libra_helper.svg">
+                            </td>
                             <td>(September 23-October 22)</td>
                         </tr>
                         <tr>
                             <td>Scorpio</td>
-                            <td><img class="helperIcon" src="assets/images/scorpio_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/scorpio_helper.svg">
+                            </td>
                             <td>(October 23-November 21)</td>
                         </tr>
                         <tr>
                             <td>Sagittarius</td>
-                            <td><img class="helperIcon" src="assets/images/sagittarius_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/sagittarius_helper.svg">
+                            </td>
                             <td>(November 22-December 21)</td>
                         </tr>
                         <tr>
                             <td>Capricorn</td>
-                            <td><img class="helperIcon" src="assets/images/capricorn_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/capricorn_helper.svg">
+                            </td>
                             <td>(December 22-January 19)</td>
                         </tr>
                         <tr>
                             <td>Aquarius</td>
-                            <td><img class="helperIcon" src="assets/images/aquarius_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/aquarius_helper.svg">
+                            </td>
                             <td>(January 20-February 18)</td>
                         </tr>
                         <tr>
                             <td>Pisces</td>
-                            <td><img class="helperIcon" src="assets/images/pisces_helper.svg"></td>
+                            <td>
+                                <img class="helperIcon" src="assets/images/pisces_helper.svg">
+                            </td>
                             <td>(February 19-March 20)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div id="horoBox" >
+        <div id="horoBox">
             <div id="horoContent">Loading..</div>
             <div id="apodContent">
                 <div id="imageWrapper">
@@ -121,14 +218,80 @@
             </div>
         </div>
 
-        <div id="iconCredit">Icons made by<a href="https://www.flaticon.com/authors/smashicons" title="Virgo"> Virgo </a>from<a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a>licensed by<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank"> CC 3.0 BY </a></div>
+        <div id="signUpModal" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <input id="first_name" type="text" class="validate">
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">Last Name</label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="text" class="datepicker">
+                                <label for="last_name">Birth Date</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="newEmail" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="newPassword" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="btnSignUp">Sign Up</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="signInModal" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="txtEmail" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="txtPassword" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="btnSignIn">Sign In</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="iconCredit">Icons made by
+            <a href="https://www.flaticon.com/authors/smashicons" title="Virgo"> Virgo </a>from
+            <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com </a>licensed by
+            <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank"> CC 3.0 BY </a>
+        </div>
 
     </div>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="assets/scripts/script.js"></script>
 </body>
+
 </html>

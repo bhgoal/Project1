@@ -1,7 +1,100 @@
+
+var config = {
+    apiKey: "AIzaSyAxbza5xyLJfMdsEg-EkMg9khxDpgdC7IY",
+    authDomain: "auth1-81f49.firebaseapp.com",
+    databaseURL: "https://auth1-81f49.firebaseio.com",
+    projectId: "auth1-81f49",
+    storageBucket: "auth1-81f49.appspot.com",
+    messagingSenderId: "566405499754"
+};
+firebase.initializeApp(config);
+
+//getting signin elemnts
+
+var txtEmail = document.getElementById('txtEmail');
+var txtPassword = document.getElementById('txtPassword');
+var newEmail = document.getElementById('newEmail');
+var newPassword = document.getElementById('newPassword');
+var btnLogin = document.getElementById('btnLogin');
+var btnSignUp = document.getElementById('btnSignUp');
+var btnLogOut = document.getElementById('btnLogOut');
+
+// Add sign in event
+
+$("#btnSignIn").on("click", function () {
+
+    var email = txtEmail.value;
+    var pass = txtPassword.value;
+    var auth = firebase.auth();
+    console.log(email);
+    console.log(pass);
+
+
+    var promise = auth.signInWithEmailAndPassword(email, pass)
+        .catch(function (error) {
+            console.log(error.message)
+            alert(error.message);
+        }
+        );
+
+});
+
+// add login event
+
+$("#btnSignUp").on("click", function () {
+
+    var email = newEmail.value;
+    var pass = newPassword.value;
+    var auth = firebase.auth();
+    console.log(email);
+    console.log(pass);
+
+    var promise = auth.createUserWithEmailAndPassword(email, pass)
+        .catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode == 'auth/weak-password') {
+                alert('The password is too weak.');
+            } else {
+                alert(errorMessage);
+            }
+            console.log(error);
+        });
+});
+
+
+// authentication event listener
+
+firebase.auth().onAuthStateChanged(function (firebaseUser) {
+    if (firebaseUser) {
+        console.log(firebaseUser);
+        $("#signIn").addClass("none");
+        $("#create").addClass("none");
+        $("#logOut").removeClass("none");
+    }
+    else {
+        console.log("not logged in")
+        $("#signIn").removeClass("none");
+        $("#create").removeClass("none");
+        $("#logOut").addClass("none");
+    }
+})
+
+firebase.auth().onAuthStateChanged(function (user) {
+    window.user = user; // user is undefined if no user signed in
+});
+
+$("#logOut").on("click", function () {
+
+firebase.auth().signOut();
+
+});
+
 var isMenuOpen;
 var chosenSign;
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Initiate tooltip function
     $('.tooltipped').tooltip({
         exitDelay: 0,
@@ -14,7 +107,7 @@ $(document).ready(function() {
 function introLoad() {
     spinny();
     isMenuOpen = true;
-    $(".signIcon").on("click", function() {
+    $(".signIcon").on("click", function () {
         // Store the sign that was clicked on
         chosenSign = $(this).attr("id");
         console.log("icon clicked");
@@ -30,26 +123,26 @@ function introLoad() {
 // Function for creating the icons' spin animation
 function spinny() {
     console.log("begin spinny");
-    
+
     var type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
         radius = '12em', //distance from center
         start = 0, //shift start from 0
         $elements = $(".signIcon"),
-        numberOfElements = (type === 1) ?  $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle
+        numberOfElements = (type === 1) ? $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle
         slice = 360 * type / numberOfElements;
 
-    $elements.each(function(i) {
+    $elements.each(function (i) {
         var $self = $(this),
             rotate = slice * i + start,
             rotateReverse = rotate * -1;
         $self.css({
             'transform': 'rotate(' + rotate + 'deg) translateY(-' + radius + ') rotate(' + rotateReverse + 'deg)',
             'opacity': '1',
-            WebkitTransition : 'all 1s cubic-bezier(0.25,1,0.2,1)',
-            MozTransition    : 'all 1s cubic-bezier(0.25,1,0.2,1)',
-            MsTransition     : 'all 1s cubic-bezier(0.25,1,0.2,1)',
-            OTransition      : 'all 1s cubic-bezier(0.25,1,0.2,1)',
-            transition       : 'all 1s cubic-bezier(0.25,1,0.2,1)'
+            WebkitTransition: 'all 1s cubic-bezier(0.25,1,0.2,1)',
+            MozTransition: 'all 1s cubic-bezier(0.25,1,0.2,1)',
+            MsTransition: 'all 1s cubic-bezier(0.25,1,0.2,1)',
+            OTransition: 'all 1s cubic-bezier(0.25,1,0.2,1)',
+            transition: 'all 1s cubic-bezier(0.25,1,0.2,1)'
         });
     });
 }
@@ -61,11 +154,11 @@ function menuOpen() {
     // ..move icons back to center of page
     $(".signIcon, .menuIcon").css({
         'transform': 'translate(calc(50% - 35px), calc(50% - 35px)',
-        WebkitTransition : 'all 500ms ease-in-out',
-        MozTransition    : 'all 500ms ease-in-out',
-        MsTransition     : 'all 500ms ease-in-out',
-        OTransition      : 'all 500ms ease-in-out',
-        transition       : 'all 500ms ease-in-out'
+        WebkitTransition: 'all 500ms ease-in-out',
+        MozTransition: 'all 500ms ease-in-out',
+        MsTransition: 'all 500ms ease-in-out',
+        OTransition: 'all 500ms ease-in-out',
+        transition: 'all 500ms ease-in-out'
     });
     // Fade away previous horoscope box
     $("#horoBox").css("opacity", "0");
@@ -80,12 +173,12 @@ function menuOpen() {
 function menuClose() {
     // ..move icons to corner of page
     $(".signIcon, .menuIcon").css({
-        'transform': 'translate(-44vw, -38vh)',
-        WebkitTransition : 'all 0.7s ease-in-out',
-        MozTransition    : 'all 0.7s ease-in-out',
-        MsTransition     : 'all 0.7s ease-in-out',
-        OTransition      : 'all 0.7s ease-in-out',
-        transition       : 'all 0.7s ease-in-out'
+        'transform': 'translate(-47vw, -45vh)',
+        WebkitTransition: 'all 0.7s ease-in-out',
+        MozTransition: 'all 0.7s ease-in-out',
+        MsTransition: 'all 0.7s ease-in-out',
+        OTransition: 'all 0.7s ease-in-out',
+        transition: 'all 0.7s ease-in-out'
     });
     // Fade away sign icons, leave only sun icon
     $(".signIcon").css("opacity", "0");
@@ -95,7 +188,7 @@ function menuClose() {
 }
 
 // When sun is clicked...
-$("#sun").on("click", function(){
+$("#sun").on("click", function () {
     console.log("sun clicked");
     // If menu is closed, sun functions as open menu button
     if (isMenuOpen === false) {
@@ -120,12 +213,49 @@ function signHelper() {
     instance.open();
 }
 
+$("#create").on("click", function () {
+    createAccount();
+});
+
+function createAccount() {
+    event.preventDefault();
+    $('#signUpModal').modal({
+        opacity: 0.5,
+        startingTop: "15%",
+        endingTop: "15%"
+    });
+
+    var elem = $("#signUpModal");
+    var instance = M.Modal.getInstance(elem);
+    instance.open();
+    $('.datepicker').datepicker({
+
+    });
+}
+
+$("#signIn").on("click", function () {
+    signInAccount();
+});
+
+function signInAccount() {
+    event.preventDefault();
+    $('#signInModal').modal({
+        opacity: 0.5,
+        startingTop: "15%",
+        endingTop: "15%"
+    });
+
+    var elem = $("#signInModal");
+    var instance = M.Modal.getInstance(elem);
+    instance.open();
+}
+
 // Function for creating and displaying horoscope info
 function displayHoroscope(chosenSign) {
     // Display loading text while waiting for slowass horoscope API
     $("#horoContent").text("Loading...");
     // Fade in content box
-    setTimeout(function(){$("#horoBox").css("opacity", "1")}, 700);
+    setTimeout(function () { $("#horoBox").css("opacity", "1") }, 700);
     console.log(chosenSign);
 
     // Horoscope API request code
@@ -160,15 +290,14 @@ function displayHoroscope(chosenSign) {
         // For every key in the response...
         for (var i = 0; i < keys.length; i++) {
             var newHeading = $("<h2>");
-            var newP = $("<p>");   
+            var newP = $("<p>");
 
             // Create var to store a single key
             var key = keys[i];
             // Split key into individual words
             var keySplit = key.split("_");
             // For each word in string..
-            for (var j = 0; j < keySplit.length; j++)
-            {   // ..capitalize first character of word
+            for (var j = 0; j < keySplit.length; j++) {   // ..capitalize first character of word
                 keySplit[j] = keySplit[j].charAt(0).toUpperCase() + keySplit[j].substr(1);
             }
             // Join words back into single string
@@ -180,7 +309,7 @@ function displayHoroscope(chosenSign) {
             newP.text(signObj[i]);
             $(newDiv).append(newHeading);
             $(newDiv).append(newP);
-        } 
+        }
         console.log(newDiv);
         // Add content div to horo box
         $("#horoContent").html(newDiv);
