@@ -68,9 +68,9 @@ body {
 
 
 
-/* For sign finder modal */
-#helperModal {
-    background-color: rgba(250, 250, 250, 0.85);
+/* For sign finder and account modals */
+#helperModal, #signInModal {
+    background-color: rgba(250, 250, 250, 0.9);
     box-shadow: 0 0 20px 2px white;
     border-radius: 20px;
     outline: none;
@@ -80,6 +80,14 @@ body {
 .helperIcon {
     width: 22px;
 }
+
+#signUpModal {
+    background-color: rgba(250, 250, 250, 0.9);
+    box-shadow: 0 0 20px 2px white;
+    border-radius: 20px;
+    outline: none;
+}
+
 
 
 

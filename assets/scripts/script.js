@@ -86,9 +86,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 $("#logOut").on("click", function () {
-
-firebase.auth().signOut();
-
+    firebase.auth().signOut();
 });
 
 var isMenuOpen;
