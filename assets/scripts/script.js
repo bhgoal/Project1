@@ -19,6 +19,7 @@ var btnLogin = document.getElementById('btnLogin');
 var btnSignUp = document.getElementById('btnSignUp');
 var btnLogOut = document.getElementById('btnLogOut');
 
+
 // Add sign in event
 
 $("#btnSignIn").on("click", function () {
@@ -226,10 +227,16 @@ function createAccount() {
     var elem = $("#signUpModal");
     var instance = M.Modal.getInstance(elem);
     instance.open();
+    // $('.datepicker').datepicker({
+    //     yearRange: "-100:+0"
+    // });
     $('.datepicker').datepicker({
 
     });
+    
 }
+
+
 
 $("#signIn").on("click", function () {
     signInAccount();
