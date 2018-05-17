@@ -18,9 +18,15 @@ body {
     -webkit-transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
     -moz-transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
     transition: all 1.5s cubic-bezier(0.25,1,0.2,1);
+    font-size: 2.8rem
 }
 
 
+.button:hover {
+    -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+}
 
 /* For positioning of menu icons */
 #signsList {
