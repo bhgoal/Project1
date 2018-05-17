@@ -10,8 +10,10 @@ var config = {
 firebase.initializeApp(config);
 
 // Google Auth Provider Object
-var provider = new firebase.auth.GoogleAuthProvider();
-
+var googleProvider = new firebase.auth.GoogleAuthProvider();
+var facebookProvider = new firebase.auth.FacebookAuthProvider();
+var twitterProvider = new firebase.auth.TwitterAuthProvider();
+var githubProvider = new firebase.auth.GithubAuthProvider();
 
 
 
@@ -21,32 +23,122 @@ var provider = new firebase.auth.GoogleAuthProvider();
     var pass = txtPassword.value;
     var auth = firebase.auth();
 
-    console.log("wut");
+
+    console.log("googlePopup");
     console.log(pass);
 
 
-    // auth.signInWithPopup(provider).then(function(result) {
-    //     // This gives you a Google Access Token. You can use it to access the Google API.
-    //     var token = result.credential.accessToken;
-    //     // The signed-in user info.
-    //     var user = result.user;
-    //     // ...
-    //   }).catch(function(error) {
-    //     // Handle Errors here.
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     // The email of the user's account used.
-    //     var email = error.email;
-    //     // The firebase.auth.AuthCredential type that was used.
-    //     var credential = error.credential;
-    //     // ...
-    //   });
+    auth.signInWithPopup(googleProvider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
 
-    auth.signInWithRedirect(provider);
+    // auth.signInWithRedirect(provider);
 
 
 });
-  
+
+$("#btnFacebookSignUp").on("click", function () {
+
+    var email = txtEmail.value;
+    var pass = txtPassword.value;
+    var auth = firebase.auth();
+
+
+    console.log("facebookPopup");
+    console.log(pass);
+
+    auth.signInWithPopup(facebookProvider).then(function(result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+
+});
+
+$("#btnTwitterSignUp").on("click", function () {
+
+    var email = txtEmail.value;
+    var pass = txtPassword.value;
+    var auth = firebase.auth();
+
+
+    console.log("twitterPopup");
+    console.log(pass);
+
+    auth.signInWithPopup(twitterProvider).then(function(result) {
+        // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+        // You can use these server side with your app's credentials to access the Twitter API.
+        var token = result.credential.accessToken;
+        var secret = result.credential.secret;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+
+});
+
+$("#btnGithubSignUp").on("click", function () {
+
+    var email = txtEmail.value;
+    var pass = txtPassword.value;
+    var auth = firebase.auth();
+
+
+    console.log("githubPopup");
+    console.log(pass);
+
+    firebase.auth().signInWithPopup(githubProvider).then(function(result) {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+
+});
+
 
 //getting signin elemnts
 
@@ -127,6 +219,23 @@ firebase.auth().onAuthStateChanged(function (user) {
 $("#logOut").on("click", function () {
     firebase.auth().signOut();
 });
+
+// // Facebook login auth listener
+// FB.getLoginStatus(function(response) {
+//     statusChangeCallback(response);
+//     // if (firebaseUser) {
+//     //     console.log(firebaseUser);
+//     //     $("#signIn").addClass("none");
+//     //     $("#create").addClass("none");
+//     //     $("#logOut").removeClass("none");
+//     // }
+//     // else {
+//     //     console.log("not logged in")
+//     //     $("#signIn").removeClass("none");
+//     //     $("#create").removeClass("none");
+//     //     $("#logOut").addClass("none");
+//     // }
+// });
 
 var isMenuOpen;
 var chosenSign;
