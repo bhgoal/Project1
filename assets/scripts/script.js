@@ -227,12 +227,10 @@ function createAccount() {
     var elem = $("#signUpModal");
     var instance = M.Modal.getInstance(elem);
     instance.open();
-    // $('.datepicker').datepicker({
-    //     yearRange: "-100:+0"
-    // });
     $('.datepicker').datepicker({
-
+        yearRange: [1900, 2018]
     });
+   
     
 }
 
