@@ -14,6 +14,8 @@ var database = firebase.database();
 // Google Auth Provider Object
 var googleProvider = new firebase.auth.GoogleAuthProvider();
 
+
+
 $(".btnGoogleSignUp").on("click", function () {
 
     var email = txtEmail.value;
@@ -24,8 +26,11 @@ $(".btnGoogleSignUp").on("click", function () {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
+        var user = firebase.auth().currentUser;
         console.log(user)
+        console.log(user.displayName)
+
+        $("#welcomeHeading").html("Welcome " + user.displayName);
         // ...
     }).catch(function (error) {
         // Handle Errors here.
@@ -43,6 +48,8 @@ $(".btnGoogleSignUp").on("click", function () {
 
 //getting signin elemnts
 
+var firstName = document.getElementById('first_name');
+var lastName = document.getElementById('last_name');
 var txtEmail = document.getElementById('txtEmail');
 var txtPassword = document.getElementById('txtPassword');
 var newEmail = document.getElementById('newEmail');
@@ -51,13 +58,20 @@ var btnLogin = document.getElementById('btnLogin');
 var btnSignUp = document.getElementById('btnSignUp');
 var btnLogOut = document.getElementById('btnLogOut');
 
+
 // Add sign in event
 
 $("#btnSignIn").on("click", function () {
 
+
+
     var email = txtEmail.value;
     var pass = txtPassword.value;
     var auth = firebase.auth();
+
+    console.log(email);
+
+    console.log(pass);
 
 
     var promise = auth.signInWithEmailAndPassword(email, pass)
@@ -73,10 +87,14 @@ $("#btnSignIn").on("click", function () {
 
 $("#btnSignUp").on("click", function () {
 
+    // var firstName = firstName.value;
+    // var lastName = lastName.value;
+    var name = firstName.value + " " + lastName.value;
     var email = newEmail.value;
     var pass = newPassword.value;
     var auth = firebase.auth();
 
+    $("#welcomeHeading").html("Welcome " + name);
 
     var promise = auth.createUserWithEmailAndPassword(email, pass)
         .catch(function (error) {
@@ -93,23 +111,37 @@ $("#btnSignUp").on("click", function () {
 });
 
 
+// authentication event listener
+
+// firebase.auth().onAuthStateChanged(function (firebaseUser) {
+//     if (signedIn) {
+//         $("#signIn").addClass("none");
+//         $("#create").addClass("none");
+//         $("#logOut").removeClass("none");
+//     }
+//     else {
+//         console.log("not logged in")
+//         $("#signIn").removeClass("none");
+//         $("#create").removeClass("none");
+//         $("#logOut").addClass("none");
+//     }
+// })
 
 firebase.auth().onAuthStateChanged(function (user) {
 
-    var user = firebase.auth().currentUser;
-
-
     if (user) {
         // signedIn = true;
+        var user = firebase.auth().currentUser;
         $("#signIn").addClass("none");
         $("#create").addClass("none");
         $("#logOut").removeClass("none");
         var elem = $("#signUpModal");
         var instance = M.Modal.getInstance(elem);
         instance.close();
-        var elem = $("#signInModal");
-        var instance = M.Modal.getInstance(elem);
-        instance.close();
+        var elem2 = $("#signInModal");
+        var instance2 = M.Modal.getInstance(elem2);
+        instance2.close();
+
     } else {
         // signedIn = false;
         console.log("not logged in")
@@ -122,6 +154,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 $("#logOut").on("click", function () {
     firebase.auth().signOut();
+    $("#welcomeHeading").html("Select your sign: ");
 });
 
 // // Facebook login auth listener
@@ -144,6 +177,12 @@ $("#logOut").on("click", function () {
 var isMenuOpen;
 var chosenSign;
 
+function timeNow() {
+    var now = moment().format("dddd, MMMM Do YYYY");
+    console.log(now);
+    return now;
+}
+
 $(document).ready(function () {
     // Initiate tooltip function
     $('.tooltipped').tooltip({
@@ -151,6 +190,9 @@ $(document).ready(function () {
         margin: 10
     });
     introLoad();
+
+    $("#iconCredit").text(timeNow());
+
 });
 
 // On initial page load, run spin animation and create listener for icon clicks
@@ -279,9 +321,13 @@ function createAccount() {
     var instance = M.Modal.getInstance(elem);
     instance.open();
     $('.datepicker').datepicker({
-
+        yearRange: [1900, 2018]
     });
+
+
 }
+
+
 
 $("#signIn").on("click", function () {
     signInAccount();
@@ -404,3 +450,4 @@ function getAPOD() {
         }
     });
 }
+
