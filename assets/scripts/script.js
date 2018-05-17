@@ -161,7 +161,7 @@ function menuOpen() {
     // Fade away previous horoscope box
     $("#horoBox").css("opacity", "0");
     // Change sun tooltip from "open menu" to "sign finder"
-    $("#sunImg").attr("data-tooltip", "Find your Sign");
+    $("#sunImg").attr({"data-tooltip": "Find your Sign", "data-position": "top"});
     // After icons have moved, run spin animation
     setTimeout(spinny, 500);
     isMenuOpen = true;
@@ -181,7 +181,7 @@ function menuClose() {
     // Fade away sign icons, leave only sun icon
     $(".signIcon").css("opacity", "0");
     // Change sun tooltip from "sign finder" to "open menu"
-    $("#sunImg").attr("data-tooltip", "Open Menu");
+    $("#sunImg").attr({"data-tooltip": "Open Menu", "data-position": "right"});
     isMenuOpen = false;
 }
 
@@ -227,7 +227,7 @@ function createAccount() {
     var instance = M.Modal.getInstance(elem);
     instance.open();
     $('.datepicker').datepicker({
-
+        yearRange: [1900, 2018]
     });
 }
 
