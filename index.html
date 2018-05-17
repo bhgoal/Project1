@@ -9,16 +9,21 @@
 
     <!-- Bootstrap and personal CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-database.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <title>Project 1</title>
 </head>
 
+
 <body>
+
     <div id="starBackground">
         <nav class="transparent z-depth-0">
             <div class="nav-wrapper">
@@ -250,6 +255,19 @@
                             </div>
                         </div>
                         <a class="waves-effect waves-light btn indigo lighten-1" id="btnSignUp">Sign Up</a>
+                        <br> Or Sign Up With:
+                        <a class="btn-floating btn-small waves-effect waves-light red btnGoogleSignUp">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <!-- <a class="btn-floating btn-small waves-effect waves-light indigo" id="btnFacebookSignUp">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn-floating btn-small waves-effect waves-light light-blue" id="btnTwitterSignUp">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="btn-floating btn-small waves-effect waves-light green lighten-1" id="btnGithubSignUp">
+                            <i class="fab fa-github"></i>
+                        </a> -->
                     </form>
 
                 </div>
@@ -273,6 +291,12 @@
                             </div>
                         </div>
                         <a class="waves-effect waves-light btn" id="btnSignIn">Sign In</a>
+                        <br>
+                        Or Sign In With:
+                        <a class="btn-floating btn-small waves-effect waves-light red btnGoogleSignUp"><i class="fab fa-google"></i></a> <!--
+                        <a class="btn-floating btn-small waves-effect waves-light indigo" id="btnFacebookSignUp"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn-floating btn-small waves-effect waves-light light-blue" id="btnTwitterSignUp"><i class="fab fa-twitter"></i></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green lighten-1" id="btnGithubSignUp"><i class="fab fa-github"></i></a> -->
                     </form>
 
                 </div>
