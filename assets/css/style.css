@@ -142,11 +142,6 @@ body {
 #copyright {
     margin: 0;
 }
-
 .none {
     display: none;
-}
-
-.datepicker-date-display {
-    background-color: #5c6bc0;
 }
