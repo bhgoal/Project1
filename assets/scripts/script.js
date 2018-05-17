@@ -14,8 +14,6 @@ var database = firebase.database();
 // Google Auth Provider Object
 var googleProvider = new firebase.auth.GoogleAuthProvider();
 
-
-
 $(".btnGoogleSignUp").on("click", function () {
 
     var email = txtEmail.value;
@@ -60,8 +58,6 @@ $("#btnSignIn").on("click", function () {
     var email = txtEmail.value;
     var pass = txtPassword.value;
     var auth = firebase.auth();
-    console.log(email);
-    console.log(pass);
 
 
     var promise = auth.signInWithEmailAndPassword(email, pass)
@@ -80,8 +76,7 @@ $("#btnSignUp").on("click", function () {
     var email = newEmail.value;
     var pass = newPassword.value;
     var auth = firebase.auth();
-    console.log(email);
-    console.log(pass);
+
 
     var promise = auth.createUserWithEmailAndPassword(email, pass)
         .catch(function (error) {
@@ -98,23 +93,11 @@ $("#btnSignUp").on("click", function () {
 });
 
 
-// authentication event listener
-
-// firebase.auth().onAuthStateChanged(function (firebaseUser) {
-//     if (signedIn) {
-//         $("#signIn").addClass("none");
-//         $("#create").addClass("none");
-//         $("#logOut").removeClass("none");
-//     }
-//     else {
-//         console.log("not logged in")
-//         $("#signIn").removeClass("none");
-//         $("#create").removeClass("none");
-//         $("#logOut").addClass("none");
-//     }
-// })
 
 firebase.auth().onAuthStateChanged(function (user) {
+
+    var user = firebase.auth().currentUser;
+
 
     if (user) {
         // signedIn = true;
